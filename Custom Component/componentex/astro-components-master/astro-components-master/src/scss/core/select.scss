@@ -1,0 +1,82 @@
+/*
+**
+** 	ASTRO SELECT
+** 	==========================================================================
+**	2.0.1 Notes
+*/
+.rux-select {
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    border: 1px solid var(--selectMenuBorderColor);
+    border-radius: var(--buttonBorderRadius);
+    color: var(--selectMenuTextColor);
+    font-family: var(--fontFamily);
+    font-weight: normal;
+    font-size: 1rem;
+    padding: 0.438rem 3.125rem 0.438rem 0.5rem;
+    background-color: var(--selectMenuBackgroundColor);
+    background-image: var(--selectMenuInactiveCaret),
+        var(--selectMenuBackgroundColor);
+    background-position: center right 0.625rem, center left 0rem;
+    background-repeat: no-repeat;
+    user-select: none;
+}
+
+.rux-select .rux-select optgroup,
+.rux-select option {
+    background-color: var(--selectMenuBackgroundColor);
+    border: 1px solid var(--selectMenuBorderColor);
+    border-radius: var(--selectMenuBorderRadius);
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.5);
+}
+
+.rux-select .rux-select optgroup:hover,
+.rux-select option:hover {
+    color: var(--selectMenuOptTextHoverColor);
+    background-color: var(--selectMenuOptHoverBackgroundColor);
+}
+
+.rux-select .rux-select optgroup:focus,
+.rux-select option:focus {
+    color: var(--selectMenuOptSelectedTextColor);
+    background-color: var(--selectMenuOptSelectedBackgroundColor);
+}
+
+.rux-select:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.rux-select:disabled:hover {
+    cursor: not-allowed;
+    border-color: var(--selectMenuBorderColor);
+}
+
+.rux-select:focus {
+    outline: none;
+    border-color: var(--primaryLight);
+}
+
+.rux-select:active:not(:disabled) {
+    background-image: var(--selectMenuActiveCaret);
+}
+
+.rux-select:hover {
+    cursor: pointer;
+    border-color: var(--selectMenuBorderHoverColor);
+}
+
+.rux-select::-ms-expand {
+    display: none;
+}
+
+.rux-select:focus::-ms-value {
+    background: transparent;
+}
+
+.rux-select:invalid {
+    border: 1px solid var(--selectMenuInvalidBorder);
+}

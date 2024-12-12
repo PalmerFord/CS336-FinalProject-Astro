@@ -1,0 +1,28 @@
+---
+import { RuxSlider } from '../../astro-components-master/astro-components-master/src/components/rux-slider/rux-slider.js'
+
+export interface Props {
+  question: string;
+  max: number;
+  min: number;
+  step: number;
+  value: number;
+}
+const { question, max, min, step, value } = Astro.props;
+
+---
+
+<div class="card">
+  <p>{question}</p>
+ <rux-slider max={max} min={min} step={step} value={value}></RuxSlider>
+</div>
+
+<style>
+  .card {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+</style>
