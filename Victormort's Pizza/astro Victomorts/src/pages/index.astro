@@ -1,0 +1,200 @@
+---
+//during build time all of this is (in ---) run on server
+import Layout from '../layouts/Layout.astro';
+import { pizzas, crusts, sizes } from '../data/pizzas';
+import OrderForm from '../components/OrderForm';
+import Cart from '../components/Cart';
+
+//normal elements are sent to browser immediately
+//interactive components like client:visible are first static html
+//when visible, they are hydrated and props if used become active and component is interactive
+//props are read only components to control rendering often updated by parent
+//props are like when we receive the pizza form pizzas.ts while mapping in order
+---
+
+
+<Layout title="Victomort's Pizza Emporium">
+  <div class="main-wrapper">
+    <div class="left-section">
+      <div>
+        <h1>Victomort's Pizza Emporium</h1>
+        <img 
+          src="/src/1.png"
+          alt="Pizza Logo" 
+          class="pizza-image"
+        />
+      </div>
+    </div>
+    
+    <div class="right-section">
+      <OrderForm client:visible {pizzas} {crusts} {sizes} /> <!-- makes immediately avail -->
+      <Cart client:idle /> <!-- loads secondary, don't need right away -->
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  html {
+    background-color: #39403f;
+    color: aliceblue;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 1600px;
+    min-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  h3 {
+    text-decoration: underline;
+    text-underline-offset: 0.4rem;
+  }
+
+  .options input {
+    display: none;
+  }
+
+  label input:checked + span {
+    background-color: turquoise;
+    color: black;
+  }
+
+  p.options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  #quantity {
+    font-size: large;
+    border: 2px solid teal;
+    color: aliceblue;
+    text-align: center;
+    border-radius: 3px;
+    background: transparent;
+    box-shadow: 0px 0px 10px 1px turquoise;
+  }
+
+  label {
+    display: inline-block;
+    width: 7rem;
+    height: 2rem;
+    border: 2px solid turquoise;
+    cursor: pointer;
+    color: turquoise;
+    padding: 10px;
+    border-radius: 3px;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: 0px 0px 10px 1px turquoise;
+    margin: 5px;
+  }
+
+  .button-title {
+    text-transform: uppercase;
+    width: 100%;
+    height: 100%;
+    font-size: 0.8rem;
+  }
+
+  label span.price {
+    display: block;
+    font-size: small;
+  }
+
+  label:has(input:checked) {
+    background-color: turquoise;
+    color: black;
+  }
+
+  #add-to-cart {
+    background-color: turquoise;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 10px 1px turquoise;
+  }
+
+  #cart-section {
+    margin-top: 40px;
+    border-top: 2px solid turquoise;
+    padding-top: 20px;
+  }
+
+  #cart-items {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  #cart-items li {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #cart-items button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
+  #cart-total {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .pizza-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 100px;
+    margin-top: 15%;
+    border-radius: 5%;
+    box-shadow: 0px 0px 10px 1px turquoise;
+  }
+
+  .main-wrapper {
+    display: flex;
+    margin-right: 200;
+  }
+
+  .left-section {
+    flex: 1;
+    padding: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 2%;
+  }
+
+  .right-section {
+    flex: 1;
+    padding: 0%;
+    background-color: #2c3531;
+    color: aliceblue;
+    justify-content: center;
+    padding-top: 20px;
+    font-size: 20px;
+    text-align: center;
+    margin-left: 2%;
+    border-radius: 5%;
+    padding: 20px;
+  }
+
+  .right-section img {
+    width: 20vw;
+    height: 20vw;
+  }
+</style>
